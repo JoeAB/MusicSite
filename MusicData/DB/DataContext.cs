@@ -6,11 +6,15 @@ using System.Text;
 
 namespace MusicData.DB
 {
-    class DataContext: DbContext
+    public class DataContext: DbContext
     {
-        public DataContext()
-        {
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if(!optionsBuilder .IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Music;Trusted_Connection=True;");
+            }
         }
 
         public DbSet<Artist> Artists { get; set; }

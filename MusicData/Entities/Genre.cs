@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MusicData.Entities
 {
-    class Genre
+    public class Genre
     {
         public String genreID { get; set; }
 
