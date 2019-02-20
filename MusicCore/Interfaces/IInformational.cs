@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MusicCore.Interfaces
 {
-    interface Purchasable
+    public interface IInformational
     {
-        Decimal priceDollar
+        String name
+        {
+            get;
+            set;
+        }
+        String description
         {
             get;
             set;

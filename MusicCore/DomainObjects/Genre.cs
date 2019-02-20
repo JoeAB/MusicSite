@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicCore.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace MusicCore
 {
-    class Genre
+    class Genre: IInformational
     {
-        private String id;
+        protected String id { get; set; }
 
-        private String name;
+        public String name { get; set; }
+        public String description { get; set; }
 
     }
 }

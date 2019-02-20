@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MusicCore.Interfaces;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MusicCore
 {
-    class Album
+    class Album : IPurchasable
     {
-        private String id;
-        private List<Song> songs;
+        protected String id { get; set; }
+        public List<Song> songs { get; set; }
 
-        private String name;
-        private Decimal price;
+        public String name { get; set; }
+        public Decimal price { get; set; }
     }
 }
