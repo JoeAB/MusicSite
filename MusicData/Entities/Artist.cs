@@ -6,8 +6,13 @@ namespace MusicData.Entities
 {
     public class Artist
     {
-        public String artistID { get; set; }
+        public int artistID { get; set; }
+
         public String name { get; set; }
         public String description { get; set; }
+
+        public DateTime startingDate{ get; set; }
+        public DateTime? endingDate { get; set; }
+
     }
 }

@@ -6,7 +6,7 @@ namespace MusicData.Entities
 {
     public class Genre
     {
-        public String genreID { get; set; }
+        public int genreID { get; set; }
 
         public String name { get; set; }
     }
