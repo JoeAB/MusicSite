@@ -8,8 +8,7 @@ namespace MusicData.Interfaces
     {
         
         int songToAlbumID { get; set; }
-
-        ISong song { get; set; }
-        IAlbum album { get; set; }
+        ISong songReference { get; set; }
+        IAlbum albumReference { get; set; }
     }
 }

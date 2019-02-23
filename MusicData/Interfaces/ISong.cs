@@ -7,8 +7,8 @@ namespace MusicData.Interfaces
     public interface ISong
     {
         int songID { get; set; }
-        IGenre songGenre { get; set; }
-        IArtist songArtist { get; set; }
+        IGenre genre { get; set; }
+        IArtist artist { get; set; }
 
         String name { get; set; }
         String filePath { get; set; }

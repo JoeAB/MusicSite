@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MusicCore
 {
-    class Album : IPurchasable
+    public class Album : IPurchasable
     {
         protected String id { get; set; }
         public List<Song> songs { get; set; }

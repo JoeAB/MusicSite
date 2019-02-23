@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MusicCore
 {
-    class Genre: IInformational
+    public class Genre: IInformational
     {
         protected String id { get; set; }
 
