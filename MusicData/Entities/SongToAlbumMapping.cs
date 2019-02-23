@@ -1,17 +1,18 @@
-﻿using System;
+﻿using MusicData.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace MusicData.Entities
 {
-    public class SongToAlbumMapping
+    public class SongToAlbumMapping: ISongToAlbumMapping
     {
         [Key]
         public int songToAlbumID { get; set; }
 
-        public Song song{ get; set; }
-        public Album album { get; set; }
+        public ISong song{ get; set; }
+        public IAlbum album { get; set; }
 
     }
 }

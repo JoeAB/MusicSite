@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MusicData.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MusicData.Entities
 {
-    public class Genre
+    public class Genre: IGenre
     {
         public int genreID { get; set; }
 

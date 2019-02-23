@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MusicData.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MusicData.Entities
 {
-    public class Album
+    public class Album : IAlbum
     {
         public int albumID { get; set; }
 
