@@ -13,4 +13,3 @@ namespace MusicData.Interfaces
         DateTime? releaseDate { get; set; }
     }
 }
-}

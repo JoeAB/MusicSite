@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MusicData.Entities
 {
-    public class SongToAlbumMapping: ISongToAlbumMapping
+    public class SongToAlbumMapping: ISongToAlbumMapping, IDataObject
     {
         [Key]
         public int songToAlbumID { get; set; }

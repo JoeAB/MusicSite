@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using MusicData.DB;
+using MusicData.DataAccess;
 
 namespace MusicWebSite
 {
@@ -38,6 +38,7 @@ namespace MusicWebSite
 
             var connection = @"Server = (localdb)\mssqllocaldb; Database = Music; Trusted_Connection = True;ConnectRetryCount=0";
             services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MusicData.Entities
 {
-    public class Artist: IArtist
+    public class Artist: IArtist, IDataObject
     {
         public int artistID { get; set; }
 

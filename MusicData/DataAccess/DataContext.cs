@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MusicData.DB
+namespace MusicData.DataAccess
 {
     public class DataContext: DbContext
     {

@@ -13,6 +13,6 @@ namespace MusicData.Interfaces
         String name { get; set; }
         String filePath { get; set; }
         Decimal dollarPrice { get; set; }
-        DateTime? releaseDate { get; set; }
+        DateTime releaseDate { get; set; }
     }
 }

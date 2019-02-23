@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicWebSite", "MusicWebSite\MusicWebSite.csproj", "{CF3E08E5-4749-4F5D-8814-FB7B5A04EE57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicWebSite", "MusicWebSite\MusicWebSite.csproj", "{CF3E08E5-4749-4F5D-8814-FB7B5A04EE57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicData", "MusicData\MusicData.csproj", "{D3F221EE-F3AF-4B11-B054-A05739C3F89C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicData", "MusicData\MusicData.csproj", "{D3F221EE-F3AF-4B11-B054-A05739C3F89C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicCore", "MusicCore\MusicCore.csproj", "{5A0FD8AB-85F2-48A5-8F28-0E1936002407}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicCore", "MusicCore\MusicCore.csproj", "{5A0FD8AB-85F2-48A5-8F28-0E1936002407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MusicData.Entities
 {
-    public class Song: ISong
+    public class Song: ISong, IDataObject
     {
         public int songID { get; set; }
         public IGenre songGenre { get; set; }
@@ -14,7 +14,7 @@ namespace MusicData.Entities
         public String name { get; set; }
         public String filePath { get; set; }
         public Decimal dollarPrice { get; set; }
-        public DateTime? releaseDate { get; set; }
+        public DateTime releaseDate { get; set; }
 
     }
 }
