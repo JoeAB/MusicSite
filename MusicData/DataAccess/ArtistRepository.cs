@@ -3,7 +3,6 @@ using MusicData.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MusicData.DataAccess
 {
@@ -49,12 +48,40 @@ namespace MusicData.DataAccess
 
         public List<IArtist> GetAllArtists()
         {
-            throw new NotImplementedException();
+            List<IArtist> artists;
+            try
+            {
+                using (DataContext context = new DataContext())
+                {
+                    artists = context.Artists.ToList().ConvertAll(x=>(IArtist)x);
+                }
+            }
+            // we had an error and we're going to want to log it
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            return artists;
         }
 
         public bool RemoveArtist(IArtist artist)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (DataContext context = new DataContext())
+                {
+                    context.Artists.Remove((Artist)artist);
+                    context.SaveChanges();
+                }
+            }
+            // we had an error and we're going to want to log it
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
         }
     }
 }

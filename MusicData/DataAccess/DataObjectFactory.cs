@@ -14,22 +14,16 @@ namespace MusicData.DataAccess
             {
                 case "artist":
                     return new Artist();
-                    break;
                 case "song":
                     return new Song();
-                    break;
                 case "album":
                     return new Album();
-                    break;
                 case "genre":
                     return new Genre();
-                    break;
                 case "songToAlbumMapping":
                     return new SongToAlbumMapping();
-                    break;
                 default:
                     throw new Exception("Unsupported object type requested to factory");
-                    break;
             }
                  
         }

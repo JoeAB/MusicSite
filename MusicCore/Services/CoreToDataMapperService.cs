@@ -52,6 +52,40 @@ namespace MusicCore.Services
             songCore.filePath = songData.filePath;
             return songCore;
         }
+        internal IGenre MapGenreCoreToData(Genre genreCore)
+        {
+            DataObjectFactory dataObjectFactory = new DataObjectFactory();
+            IGenre genreData = (IGenre)dataObjectFactory.RetrieveObject("genre");
+            genreData.genreID = genreCore.id;
+            genreData.name = genreCore.name;
+            return genreData;
+        }
+        internal Genre MapGenreDataToCore(IGenre genreData)
+        {
+            Genre genreCore = new Genre();
+            genreCore.id = genreData.genreID;
+            genreCore.name = genreData.name;
+            return genreCore;
+        }
 
+        internal IAlbum MapAlbumCoreToData(Album albumCore)
+        {
+            DataObjectFactory dataObjectFactory = new DataObjectFactory();
+            IAlbum albumData = (IAlbum)dataObjectFactory.RetrieveObject("album");
+            albumData.albumID = albumCore.id;
+            albumData.name = albumCore.name;
+            albumData.dollarPrice = albumCore.price;
+            albumData.releaseDate = albumCore.releaseDate;
+            return albumData;
+        }
+        internal Album MapGenreDataToCore(IAlbum albumData)
+        {
+            Album albumCore = new Album();
+            albumCore.id = albumData.albumID;
+            albumCore.name = albumData.name;
+            albumCore.price = albumData.dollarPrice;
+            albumCore.releaseDate = albumData.releaseDate;
+            return albumCore;
+        }
     }
 }
