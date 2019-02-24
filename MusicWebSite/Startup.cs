@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using MusicData.DataAccess;
 
 namespace MusicWebSite
 {
@@ -36,8 +34,6 @@ namespace MusicWebSite
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            var connection = @"Server = (localdb)\mssqllocaldb; Database = Music; Trusted_Connection = True;ConnectRetryCount=0";
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
 
         }
 

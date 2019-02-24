@@ -13,9 +13,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.2" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <ProjectReference Include="..\MusicData\MusicData.csproj" />
-  </ItemGroup>
-
 </Project>
