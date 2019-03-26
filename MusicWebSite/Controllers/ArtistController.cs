@@ -19,7 +19,7 @@ namespace MusicWebSite.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult BrowseAll()
+        public IActionResult Artists(string filter = null)
         {
             ArtistService artistService = new ArtistService();
             List<ArtistViewModel> artistViewModels = _mapper.Map<List<ArtistViewModel>>(artistService.GetAllArtists());
@@ -31,6 +31,20 @@ namespace MusicWebSite.Controllers
             ArtistService artistService = new ArtistService();
             ArtistViewModel artist =  _mapper.Map<ArtistViewModel>(artistService.GetArtist(id));
             return View(artist);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(ArtistViewModel model)
+        {
+            ArtistService artistService = new ArtistService();
+            Boolean success = artistService.AddArtist(_mapper.Map<MusicCore.Artist>(model));
+            return RedirectToAction("Artists");
         }
     }
 }

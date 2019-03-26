@@ -28,5 +28,12 @@ namespace MusicCore.Services
             }
             return artists;
         } 
+        public Boolean AddArtist(Artist artist)
+        {
+            IArtistRepository repository = new ArtistRepository();
+            CoreToDataMapperService mapperService = new CoreToDataMapperService();
+            return repository.SaveArtist(mapperService.MapArtistCoreToData(artist));
+        }
+
     }
 }
