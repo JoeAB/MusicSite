@@ -16,5 +16,16 @@ namespace MusicCore
         public DateTime startingDate { get; set; }
         public DateTime? endingDate { get; set; }
 
+        //return false if the object violates requirements
+        public Boolean Validate()
+        {
+            Boolean returnValue = true;
+            if (endingDate.HasValue && endingDate.Value < startingDate)
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
+        }
     }
 }

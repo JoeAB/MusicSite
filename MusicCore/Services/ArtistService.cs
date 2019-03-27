@@ -3,7 +3,6 @@ using MusicData.DataAccess;
 using MusicData.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MusicCore.Services
 {
@@ -30,9 +29,17 @@ namespace MusicCore.Services
         } 
         public Boolean AddArtist(Artist artist)
         {
-            IArtistRepository repository = new ArtistRepository();
-            CoreToDataMapperService mapperService = new CoreToDataMapperService();
-            return repository.SaveArtist(mapperService.MapArtistCoreToData(artist));
+            //only set everything up if our object is valid
+            if(artist.Validate())
+            {
+                IArtistRepository repository = new ArtistRepository();
+                CoreToDataMapperService mapperService = new CoreToDataMapperService();
+                return repository.SaveArtist(mapperService.MapArtistCoreToData(artist));
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
