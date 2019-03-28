@@ -10,5 +10,7 @@ namespace MusicData.Interfaces
         List<IArtist> GetAllArtists();
         Boolean SaveArtist(IArtist artist);
         Boolean RemoveArtist(IArtist artist);
+        IArtist GetByName(String name);
+        List<IArtist> SearchByName(String name);
     }
 }

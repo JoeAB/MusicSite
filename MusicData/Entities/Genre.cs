@@ -10,5 +10,7 @@ namespace MusicData.Entities
         public int genreID { get; set; }
 
         public String name { get; set; }
+
+        
     }
 }

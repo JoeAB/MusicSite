@@ -84,5 +84,43 @@ namespace MusicData.DataAccess
             }
             return true;
         }
+
+        public IGenre GetByName(string name)
+        {
+            IGenre genre;
+            try
+            {
+                using (DataContext context = new DataContext())
+                {
+                    genre = context.Genres.Single(x => x.name.Equals(name));
+                }
+            }
+            // we had an error and we're going to want to log it
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            return genre;
+        }
+
+        public List<IGenre> SearchByName(string name)
+        {
+            List<IGenre> genres;
+            try
+            {
+                using (DataContext context = new DataContext())
+                {
+                    genres = context.Genres.Where(x => x.name.Contains(name)).ToList().ConvertAll(x => (IGenre)x);
+                }
+            }
+            // we had an error and we're going to want to log it
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            return genres;
+        }
     }
 }

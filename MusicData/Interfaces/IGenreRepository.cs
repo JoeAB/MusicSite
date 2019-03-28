@@ -10,5 +10,7 @@ namespace MusicData.Interfaces
         List<IGenre> GetAllGenres();
         Boolean SaveGenre(IGenre genre);
         Boolean RemoveGenre(IGenre genre);
+        IGenre GetByName(String name);
+        List<IGenre> SearchByName(String name);
     }
 }

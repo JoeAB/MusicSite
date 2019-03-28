@@ -29,9 +29,26 @@ namespace MusicCore.Services
         }
         public Boolean AddGenre(Genre genre)
         {
+            if(Validate(genre))
+            {
+                IGenreRepository repository = new GenreRepository();
+                CoreToDataMapperService mapperService = new CoreToDataMapperService();
+                return repository.SaveGenre(mapperService.MapGenreCoreToData(genre));
+            }
+            return false;
+        }
+        public Boolean Validate(Genre genre)
+        {
+            Boolean returnValue = true;
+
+            //don't allow duplicates
             IGenreRepository repository = new GenreRepository();
-            CoreToDataMapperService mapperService = new CoreToDataMapperService();
-            return repository.SaveGenre(mapperService.MapGenreCoreToData(genre));
+            if(repository.GetByName(genre.name) != null)
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
         }
     }
 }

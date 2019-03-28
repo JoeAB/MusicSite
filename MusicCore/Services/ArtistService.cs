@@ -30,16 +30,24 @@ namespace MusicCore.Services
         public Boolean AddArtist(Artist artist)
         {
             //only set everything up if our object is valid
-            if(artist.Validate())
+            if(Validate(artist))
             {
                 IArtistRepository repository = new ArtistRepository();
                 CoreToDataMapperService mapperService = new CoreToDataMapperService();
                 return repository.SaveArtist(mapperService.MapArtistCoreToData(artist));
             }
-            else
+            return false;
+        }
+        //return false if the object violates requirements
+        public Boolean Validate(Artist artist)
+        {
+            Boolean returnValue = true;
+            if (artist.endingDate.HasValue && artist.endingDate.Value < artist.startingDate)
             {
-                return false;
+                returnValue = false;
             }
+
+            return returnValue;
         }
 
     }
