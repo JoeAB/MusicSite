@@ -8,10 +8,6 @@ namespace MusicCore.Interfaces
 {
     public interface IPurchasable
     {
-        Decimal price
-        {
-            get;
-            set;
-        }
+
     }
 }

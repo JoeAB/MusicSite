@@ -13,7 +13,6 @@ namespace MusicCore
         public List<Song> songs { get; set; }
 
         public String name { get; set; }
-        public Decimal price { get; set; }
         public DateTime? releaseDate { get; set; }
     }
 }

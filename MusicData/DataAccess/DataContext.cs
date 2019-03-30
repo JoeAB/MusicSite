@@ -21,7 +21,6 @@ namespace MusicData.DataAccess
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<Album> Albums { get; set; }
-        public DbSet<SongToAlbumMapping> SongToAlbumMappings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

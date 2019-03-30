@@ -20,8 +20,6 @@ namespace MusicData.DataAccess
                     return new Album();
                 case "genre":
                     return new Genre();
-                case "songToAlbumMapping":
-                    return new SongToAlbumMapping();
                 default:
                     throw new Exception("Unsupported object type requested to factory");
             }
