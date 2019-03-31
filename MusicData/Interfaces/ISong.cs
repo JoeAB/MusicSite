@@ -9,7 +9,6 @@ namespace MusicData.Interfaces
         int songID { get; set; }
         IGenre genre { get; set; }
         IArtist artist { get; set; }
-        List<IAlbum> albums { get; set; }
 
 
         String name { get; set; }
