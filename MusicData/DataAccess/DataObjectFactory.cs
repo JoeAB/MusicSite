@@ -1,8 +1,6 @@
 ﻿using MusicData.Entities;
 using MusicData.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MusicData.DataAccess
 {

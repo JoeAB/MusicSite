@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MusicCore.Interfaces;
 using MusicCore.Services;
 using MusicWebSite.Models;
 
@@ -13,23 +14,23 @@ namespace MusicWebSite.Controllers
     public class ArtistController: Controller
     {
         private readonly IMapper _mapper;
+        private readonly IArtistService _artistService;
 
-        public ArtistController(IMapper mapper)
+        public ArtistController(IMapper mapper, IArtistService artistService)
         {
             _mapper = mapper;
+            _artistService = artistService;
         }
 
         public IActionResult Artists(string filter = null)
         {
-            ArtistService artistService = new ArtistService();
-            List<ArtistViewModel> artistViewModels = _mapper.Map<List<ArtistViewModel>>(artistService.GetAllArtists());
+            List<ArtistViewModel> artistViewModels = _mapper.Map<List<ArtistViewModel>>(_artistService.GetAllArtists());
             return View(artistViewModels);
         }
 
         public IActionResult View(int id)
         {
-            ArtistService artistService = new ArtistService();
-            ArtistViewModel artist =  _mapper.Map<ArtistViewModel>(artistService.GetArtist(id));
+            ArtistViewModel artist =  _mapper.Map<ArtistViewModel>(_artistService.GetArtist(id));
             return View(artist);
         }
 
@@ -42,8 +43,7 @@ namespace MusicWebSite.Controllers
         [HttpPost]
         public IActionResult Create(ArtistViewModel model)
         {
-            ArtistService artistService = new ArtistService();
-            Boolean success = artistService.AddArtist(_mapper.Map<MusicCore.Artist>(model));
+            Boolean success = _artistService.AddArtist(_mapper.Map<MusicCore.Artist>(model));
             return RedirectToAction("Artists");
         }
     }

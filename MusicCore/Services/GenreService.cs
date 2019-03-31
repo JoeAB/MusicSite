@@ -1,4 +1,5 @@
 ﻿using MusicCore;
+using MusicCore.Interfaces;
 using MusicData.DataAccess;
 using MusicData.Interfaces;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 namespace MusicCore.Services
 {
-    public class GenreService
+    public class GenreService: IGenreService
     {
         public Genre GetGenre(int id)
         {

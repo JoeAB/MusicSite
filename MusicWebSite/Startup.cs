@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MusicCore.Interfaces;
+using MusicCore.Services;
 
 namespace MusicWebSite
 {
@@ -43,6 +45,10 @@ namespace MusicWebSite
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+
+            services.AddScoped<IArtistService, ArtistService>();
+            services.AddScoped<IGenreService, GenreService>();
 
         }
 

@@ -1,4 +1,5 @@
 ﻿using MusicCore;
+using MusicCore.Interfaces;
 using MusicData.DataAccess;
 using MusicData.Interfaces;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 namespace MusicCore.Services
 {
-    public class ArtistService
+    public class ArtistService: IArtistService
     {
         public Artist GetArtist(int id)
         {
