@@ -6,7 +6,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MusicCore.Interfaces;
-using MusicCore.Services;
 using MusicWebSite.Models;
 
 namespace MusicWebSite.Controllers

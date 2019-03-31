@@ -1,6 +1,4 @@
-﻿using MusicCore;
-using MusicCore.Interfaces;
-using MusicData.DataAccess;
+﻿using MusicCore.Interfaces;
 using MusicData.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,20 +7,24 @@ namespace MusicCore.Services
 {
     public class ArtistService: IArtistService
     {
+
+        private readonly IArtistRepository _artistRepository;
+
+        public ArtistService(IArtistRepository artistRepository)
+        {
+            _artistRepository = artistRepository;
+        }
+
         public Artist GetArtist(int id)
         {
-            //want to refactor this later with DI but will leave alone until I find the best approach for this
-            IArtistRepository repository = new ArtistRepository();
             CoreToDataMapperService mapperService = new CoreToDataMapperService();
-            return mapperService.MapArtistDataToCore(repository.GetArtist(id));
+            return mapperService.MapArtistDataToCore(_artistRepository.GetArtist(id));
         }
         public List<Artist> GetAllArtists()
         {
             List <Artist> artists = new List<Artist>();
-            //want to refactor this later with DI but will leave alone until I find the best approach for this
-            IArtistRepository repository = new ArtistRepository();
             CoreToDataMapperService mapperService = new CoreToDataMapperService();
-            foreach(IArtist artistData in repository.GetAllArtists())
+            foreach(IArtist artistData in _artistRepository.GetAllArtists())
             {
                 artists.Add(mapperService.MapArtistDataToCore(artistData));
             }
@@ -33,9 +35,8 @@ namespace MusicCore.Services
             //only set everything up if our object is valid
             if(Validate(artist))
             {
-                IArtistRepository repository = new ArtistRepository();
                 CoreToDataMapperService mapperService = new CoreToDataMapperService();
-                return repository.SaveArtist(mapperService.MapArtistCoreToData(artist));
+                return _artistRepository.SaveArtist(mapperService.MapArtistCoreToData(artist));
             }
             return false;
         }

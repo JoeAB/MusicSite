@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MusicCore.Services;
+using MusicCore.Interfaces;
 using MusicWebSite.Models;
 
 namespace MusicWebSite.Controllers
@@ -12,23 +12,23 @@ namespace MusicWebSite.Controllers
     public class GenreController : Controller
     {
         private readonly IMapper _mapper;
+        private readonly IGenreService _genreService;
 
-        public GenreController(IMapper mapper)
+        public GenreController(IMapper mapper, IGenreService genreService)
         {
             _mapper = mapper;
+            _genreService = genreService;
         }
 
         public IActionResult Genres(string filter = null)
         {
-            GenreService genreService = new GenreService();
-            List<GenreViewModel> genreViewModels = _mapper.Map<List<GenreViewModel>>(genreService.GetAllGenres());
+            List<GenreViewModel> genreViewModels = _mapper.Map<List<GenreViewModel>>(_genreService.GetAllGenres());
             return View(genreViewModels);
         }
 
         public IActionResult View(int id)
         {
-            GenreService genreService = new GenreService();
-            GenreViewModel genre = _mapper.Map<GenreViewModel>(genreService.GetGenre(id));
+            GenreViewModel genre = _mapper.Map<GenreViewModel>(_genreService.GetGenre(id));
             return View(genre);
         }
 
@@ -41,8 +41,7 @@ namespace MusicWebSite.Controllers
         [HttpPost]
         public IActionResult Create(GenreViewModel model)
         {
-            GenreService genreService = new GenreService();
-            Boolean success = genreService.AddGenre(_mapper.Map<MusicCore.Genre>(model));
+            Boolean success = _genreService.AddGenre(_mapper.Map<MusicCore.Genre>(model));
             return RedirectToAction("Genres");
         }
     }

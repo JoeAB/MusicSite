@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MusicCore.Interfaces;
 using MusicCore.Services;
+using MusicData.DataAccess;
+using MusicData.Interfaces;
 
 namespace MusicWebSite
 {
@@ -40,16 +42,20 @@ namespace MusicWebSite
                 mc.AddProfile(new MappingProfile());
             });
 
+            //Web Layer
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-
+            //Business Layer servoces
             services.AddScoped<IArtistService, ArtistService>();
             services.AddScoped<IGenreService, GenreService>();
 
+            //Data Layer Services
+            services.AddScoped<IArtistRepository, ArtistRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,6 +1,4 @@
-﻿using MusicCore;
-using MusicCore.Interfaces;
-using MusicData.DataAccess;
+﻿using MusicCore.Interfaces;
 using MusicData.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,20 +7,23 @@ namespace MusicCore.Services
 {
     public class GenreService: IGenreService
     {
+        private readonly IGenreRepository _genreRepository;
+
+        public GenreService(IGenreRepository genreRepository)
+        {
+            _genreRepository = genreRepository;
+        }
+
         public Genre GetGenre(int id)
         {
-            //want to refactor this later with DI but will leave alone until I find the best approach for this
-            IGenreRepository repository = new GenreRepository();
             CoreToDataMapperService mapperService = new CoreToDataMapperService();
-            return mapperService.MapGenreDataToCore(repository.GetGenre(id));
+            return mapperService.MapGenreDataToCore(_genreRepository.GetGenre(id));
         }
         public List<Genre> GetAllGenres()
         {
             List<Genre> genres = new List<Genre>();
-            //want to refactor this later with DI but will leave alone until I find the best approach for this
-            IGenreRepository repository = new GenreRepository();
             CoreToDataMapperService mapperService = new CoreToDataMapperService();
-            foreach (IGenre genreData in repository.GetAllGenres())
+            foreach (IGenre genreData in _genreRepository.GetAllGenres())
             {
                 genres.Add(mapperService.MapGenreDataToCore(genreData));
             }
@@ -32,9 +33,8 @@ namespace MusicCore.Services
         {
             if(Validate(genre))
             {
-                IGenreRepository repository = new GenreRepository();
                 CoreToDataMapperService mapperService = new CoreToDataMapperService();
-                return repository.SaveGenre(mapperService.MapGenreCoreToData(genre));
+                return _genreRepository.SaveGenre(mapperService.MapGenreCoreToData(genre));
             }
             return false;
         }
@@ -43,8 +43,7 @@ namespace MusicCore.Services
             Boolean returnValue = true;
 
             //don't allow duplicates
-            IGenreRepository repository = new GenreRepository();
-            if(repository.GetByName(genre.name) != null)
+            if(_genreRepository.GetByName(genre.name) != null)
             {
                 returnValue = false;
             }
