@@ -79,7 +79,7 @@ namespace MusicCore.Services
             albumData.releaseDate = albumCore.releaseDate;
             return albumData;
         }
-        internal Album MapAlbumeDataToCore(IAlbum albumData)
+        internal Album MapAlbumDataToCore(IAlbum albumData)
         {
             Album albumCore = new Album();
             albumCore.id = albumData.albumID;
