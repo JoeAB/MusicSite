@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MusicData.DataAccess
 {
-    class SongRepository: ISongRepository
+    public class SongRepository: ISongRepository
     {
             public bool SaveSong(ISong song)
             {

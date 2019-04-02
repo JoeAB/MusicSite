@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace MusicCore.Services
 {
-    class SongService : ISongService
+    public class SongService : ISongService
     {
         private readonly ISongRepository _songRepository;
 

@@ -38,7 +38,15 @@ namespace MusicCore.Services
             songData.name = songCore.name;
             songData.releaseDate = songCore.releaseDate;
             songData.filePath = songCore.filePath;
-
+            
+            if(songCore.songArtist != null)
+            {
+                songData.artistID = MapArtistCoreToData(songCore.songArtist).artistID;
+            }
+            if (songCore.songGenre != null)
+            {
+                songData.genreID = MapGenreCoreToData(songCore.songGenre).genreID;
+            }
 
             return songData;
         }

@@ -44,5 +44,6 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("New Song", "Create","Song", new {  artistID = Model.id  }) |
     <a asp-action="Artists">Back to Artists List</a>
 </div>

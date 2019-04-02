@@ -16,6 +16,8 @@ namespace MusicWebSite
             CreateMap<Artist, ArtistViewModel>();
             CreateMap<Genre, GenreViewModel>();
             CreateMap<GenreViewModel, Genre>();
+            CreateMap<Song, SongViewModel>();
+            CreateMap<SongViewModel, Song>();
         }
     }
 }

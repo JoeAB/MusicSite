@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 namespace MusicData.DataAccess
 {
-    class AlbumRepository
+    public class AlbumRepository: IAlbumRepository
     {
             public bool SaveAlbum(IAlbum album)
             {
