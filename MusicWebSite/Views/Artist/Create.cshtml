@@ -1,4 +1,4 @@
-﻿@model MusicWebSite.Models.ArtistViewModel
+﻿@model MusicWebSite.ViewModels.Artist.CreateArtistViewModel
 
 @{
     ViewData["Title"] = "View1";
@@ -13,24 +13,24 @@
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
-                <input asp-for="name" class="form-control" />
-                <span asp-validation-for="name" class="text-danger"></span>
+                <label asp-for="artist.name" class="control-label"></label>
+                <input asp-for="artist.name" class="form-control" />
+                <span asp-validation-for="artist.name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="description" class="control-label"></label>
-                <input asp-for="description" class="form-control" />
-                <span asp-validation-for="description" class="text-danger"></span>
+                <label asp-for="artist.description" class="control-label"></label>
+                <input asp-for="artist.description" class="form-control" />
+                <span asp-validation-for="artist.description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="startingDate" class="control-label"></label>
-                <input asp-for="startingDate" class="form-control" />
-                <span asp-validation-for="startingDate" class="text-danger"></span>
+                <label asp-for="artist.startingDate" class="control-label"></label>
+                <input asp-for="artist.startingDate" class="form-control" />
+                <span asp-validation-for="artist.startingDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="endingDate" class="control-label"></label>
-                <input asp-for="endingDate" class="form-control" />
-                <span asp-validation-for="endingDate" class="text-danger"></span>
+                <label asp-for="artist.endingDate" class="control-label"></label>
+                <input asp-for="artist.endingDate" class="form-control" />
+                <span asp-validation-for="artist.endingDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

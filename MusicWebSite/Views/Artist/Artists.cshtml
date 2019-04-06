@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MusicWebSite.Models.ArtistViewModel>
+﻿@model MusicWebSite.ViewModels.Artist.ListArtistViewModel
 
 @{
     ViewData["Title"] = "Artists";
@@ -13,25 +13,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.id)
+                @Html.DisplayNameFor(model => model.artists.FirstOrDefault().id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+                @Html.DisplayNameFor(model => model.artists.FirstOrDefault().name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.description)
+                @Html.DisplayNameFor(model => model.artists.FirstOrDefault().description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.startingDate)
+                @Html.DisplayNameFor(model => model.artists.FirstOrDefault().startingDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.endingDate)
+                @Html.DisplayNameFor(model => model.artists.FirstOrDefault().endingDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.artists) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.id)
@@ -50,7 +50,6 @@
             </td>
             <td>
                 @Html.ActionLink("View", "View", new { item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }

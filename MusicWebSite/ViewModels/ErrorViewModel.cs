@@ -1,6 +1,6 @@
 using System;
 
-namespace MusicWebSite.Models
+namespace MusicWebSite.ViewModels
 {
     public class ErrorViewModel
     {

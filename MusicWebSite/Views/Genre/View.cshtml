@@ -1,4 +1,4 @@
-﻿@model MusicWebSite.Models.GenreViewModel
+﻿@model MusicWebSite.ViewModels.Genre.ViewGenreViewModel
 
 @{
     ViewData["Title"] = "View";
@@ -11,16 +11,16 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.id)
+            @Html.DisplayNameFor(model => model.genre.id)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.id)
+            @Html.DisplayFor(model => model.genre.id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.name)
+            @Html.DisplayNameFor(model => model.genre.name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.name)
+            @Html.DisplayFor(model => model.genre.name)
         </dd>
     </dl>
 </div>

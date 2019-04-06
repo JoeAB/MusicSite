@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MusicWebSite.Models.SongViewModel>
+﻿@model MusicWebSite.ViewModels.Song.ListSongViewModel
 
 @{
     ViewData["Title"] = "Songs";
@@ -13,22 +13,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.id)
+                @Html.DisplayNameFor(model => model.songs.FirstOrDefault().id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+                @Html.DisplayNameFor(model => model.songs.FirstOrDefault().name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.filePath)
+                @Html.DisplayNameFor(model => model.songs.FirstOrDefault().filePath)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.releaseDate)
+                @Html.DisplayNameFor(model => model.songs.FirstOrDefault().releaseDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.songs) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.id)

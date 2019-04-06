@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MusicWebSite.Models.GenreViewModel>
+﻿@model MusicWebSite.ViewModels.Genre.ListGenresViewModel
 
 @{
     ViewData["Title"] = "Genres";
@@ -13,16 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.id)
+                @Html.DisplayNameFor(model => model.genres.FirstOrDefault().id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.name)
+                @Html.DisplayNameFor(model => model.genres.FirstOrDefault().name)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.genres) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.id)

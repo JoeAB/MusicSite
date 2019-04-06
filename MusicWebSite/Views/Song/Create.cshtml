@@ -1,4 +1,4 @@
-﻿@model MusicWebSite.Models.SongViewModel
+﻿@model MusicWebSite.ViewModels.Song.CreateSongViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,25 +13,27 @@
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
-                <input asp-for="name" class="form-control" />
-                <span asp-validation-for="name" class="text-danger"></span>
+                <label asp-for="song.name" class="control-label"></label>
+                <input asp-for="song.name" class="form-control" />
+                <span asp-validation-for="song.name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="filePath" class="control-label"></label>
-                <input asp-for="filePath" class="form-control" />
-                <span asp-validation-for="filePath" class="text-danger"></span>
+                <label asp-for="song.filePath" class="control-label"></label>
+                <input asp-for="song.filePath" class="form-control" />
+                <span asp-validation-for="song.filePath" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="releaseDate" class="control-label"></label>
-                <input asp-for="releaseDate" class="form-control" />
-                <span asp-validation-for="releaseDate" class="text-danger"></span>
+                <label asp-for="song.releaseDate" class="control-label"></label>
+                <input asp-for="song.releaseDate" class="form-control" />
+                <span asp-validation-for="song.releaseDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="artist.id" type="hidden" />
+                <input asp-for="artistID" type="hidden" />
             </div>
             <div class="form-group">
-                <input asp-for="genre.id" type="hidden" />
+                <select asp-for="genreID" asp-items="@(new SelectList(Model.genreList,"id","name"))">
+                    <option>Select a Genre</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -41,6 +43,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Artist" asp-action="View" asp-route-id="@Model.artistID">Back to Artist Info</a>
 </div>
 

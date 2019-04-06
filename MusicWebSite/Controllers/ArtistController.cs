@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using MusicCore.Interfaces;
+using MusicWebSite.Models;
+using MusicWebSite.ViewModels.Artist;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using MusicCore.Interfaces;
-using MusicWebSite.Models;
+
 
 namespace MusicWebSite.Controllers
 {
@@ -23,26 +25,29 @@ namespace MusicWebSite.Controllers
 
         public IActionResult Artists(string filter = null)
         {
-            List<ArtistViewModel> artistViewModels = _mapper.Map<List<ArtistViewModel>>(_artistService.GetAllArtists());
-            return View(artistViewModels);
+            ListArtistViewModel model = new ListArtistViewModel();
+            model.artists = _mapper.Map<List<ArtistModel>>(_artistService.GetAllArtists());
+            return View(model);
         }
 
         public IActionResult View(int id)
         {
-            ArtistViewModel artist =  _mapper.Map<ArtistViewModel>(_artistService.GetArtist(id));
-            return View(artist);
+            ViewArtistViewModel model = new ViewArtistViewModel();
+            model.artist =  _mapper.Map<ArtistModel>(_artistService.GetArtist(id));
+            return View(model);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            CreateArtistViewModel model = new CreateArtistViewModel();
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(ArtistViewModel model)
+        public IActionResult Create(CreateArtistViewModel model)
         {
-            Boolean success = _artistService.AddArtist(_mapper.Map<MusicCore.Artist>(model));
+            Boolean success = _artistService.AddArtist(_mapper.Map<MusicCore.Artist>(model.artist));
             return RedirectToAction("Artists");
         }
     }

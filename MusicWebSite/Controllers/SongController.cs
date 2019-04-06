@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using MusicCore.Interfaces;
+using MusicWebSite.Models;
+using MusicWebSite.ViewModels.Song;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using MusicCore.Interfaces;
-using MusicWebSite.Models;
 
 namespace MusicWebSite.Controllers
 {
@@ -14,42 +15,46 @@ namespace MusicWebSite.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ISongService _songService;
+        private readonly IGenreService _genreService;
 
-        public SongController(IMapper mapper, ISongService songService)
+        public SongController(IMapper mapper, ISongService songService, IGenreService genreService)
         {
             _mapper = mapper;
             _songService = songService;
+            _genreService = genreService;
         }
 
         public IActionResult Songs(string filter = null)
         {
-            List<SongViewModel> songViewModels = _mapper.Map<List<SongViewModel>>(_songService.GetAllSongs());
+            List<SongModel> songViewModels = _mapper.Map<List<SongModel>>(_songService.GetAllSongs());
             return View(songViewModels);
         }
 
         public IActionResult View(int id)
         {
-            SongViewModel song = _mapper.Map<SongViewModel>(_songService.GetSong(id));
+            SongModel song = _mapper.Map<SongModel>(_songService.GetSong(id));
             return View(song);
         }
 
         [HttpGet]
         public IActionResult Create(int artistID)
         {
-            SongViewModel model = new SongViewModel();
-            model.artist = new ArtistViewModel();
-            model.artist.id = artistID;
-            model.genre = new GenreViewModel();
-            model.genre.id = 1;
+            CreateSongViewModel model = new CreateSongViewModel();
+            model.song = new SongModel();
+            model.artistID = artistID;
+            model.genreList = _mapper.Map<List<GenreModel>>(_genreService.GetAllGenres());
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(SongViewModel model)
+        public IActionResult Create(CreateSongViewModel model)
         {
-            MusicCore.Song songCore = _mapper.Map<MusicCore.Song>(model);
-            songCore.songArtist = _mapper.Map<MusicCore.Artist>(model.artist);
-            songCore.songGenre =_mapper.Map<MusicCore.Genre>(model.genre);
+            MusicCore.Song songCore = _mapper.Map<MusicCore.Song>(model.song);
+            songCore.songArtist = new MusicCore.Artist();
+            songCore.songArtist.id = model.artistID;
+            songCore.songGenre = new MusicCore.Genre();
+            songCore.songGenre.id = model.genreID;
+
             Boolean success = _songService.AddSong(songCore);
             return RedirectToAction("Songs");
         }

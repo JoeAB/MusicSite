@@ -12,12 +12,12 @@ namespace MusicWebSite
     {
         public MappingProfile()
         {
-            CreateMap<ArtistViewModel, Artist>();
-            CreateMap<Artist, ArtistViewModel>();
-            CreateMap<Genre, GenreViewModel>();
-            CreateMap<GenreViewModel, Genre>();
-            CreateMap<Song, SongViewModel>();
-            CreateMap<SongViewModel, Song>();
+            CreateMap<ArtistModel, Artist>();
+            CreateMap<Artist, ArtistModel>();
+            CreateMap<Genre, GenreModel>();
+            CreateMap<GenreModel, Genre>();
+            CreateMap<Song, SongModel>();
+            CreateMap<SongModel, Song>();
         }
     }
 }

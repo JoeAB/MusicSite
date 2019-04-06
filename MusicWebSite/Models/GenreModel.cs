@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MusicWebSite.Models
 {
-    public class GenreViewModel
+    public class GenreModel
     {
         public int id { get; set; }
 
