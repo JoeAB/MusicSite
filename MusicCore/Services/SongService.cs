@@ -27,6 +27,17 @@ namespace MusicCore.Services
             return false;
         }
 
+        public bool UpdateSong(Song song)
+        {
+            //only set everything up if our object is valid
+            if (Validate(song))
+            {
+                CoreToDataMapperService mapperService = new CoreToDataMapperService();
+                return _songRepository.UpdateSong(mapperService.MapSongCoreToData(song));
+            }
+            return false;
+        }
+
         public List<Song> GetAllSongs()
         {
             List<Song> songs = new List<Song>();

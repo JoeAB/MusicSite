@@ -16,6 +16,7 @@ namespace MusicData.Interfaces
 
         String name { get; set; }
         String filePath { get; set; }
+        String videoPath { get; set; }
         DateTime releaseDate { get; set; }
     }
 }

@@ -16,24 +16,31 @@ namespace MusicWebSite.Controllers
         private readonly IMapper _mapper;
         private readonly ISongService _songService;
         private readonly IGenreService _genreService;
+        private readonly IArtistService _artistService;
 
-        public SongController(IMapper mapper, ISongService songService, IGenreService genreService)
+        public SongController(IMapper mapper, ISongService songService, IGenreService genreService, IArtistService artistService)
         {
             _mapper = mapper;
             _songService = songService;
             _genreService = genreService;
+            _artistService = artistService;
         }
 
         public IActionResult Songs(string filter = null)
         {
-            List<SongModel> songViewModels = _mapper.Map<List<SongModel>>(_songService.GetAllSongs());
-            return View(songViewModels);
+            ListSongViewModel model = new ListSongViewModel();
+            model.songs = _mapper.Map<List<SongModel>>(_songService.GetAllSongs());
+            return View(model);
         }
 
         public IActionResult View(int id)
         {
-            SongModel song = _mapper.Map<SongModel>(_songService.GetSong(id));
-            return View(song);
+            ViewSongViewModel model = new ViewSongViewModel();
+            model.song = _mapper.Map<SongModel>(_songService.GetSong(id));
+            model.songArtist = _mapper.Map<ArtistModel>(_artistService.GetArtist(model.song.songArtistID));
+            model.songGenre = _mapper.Map<GenreModel>(_genreService.GetGenre(model.song.songGenreID));
+
+            return View(model);
         }
 
         [HttpGet]
@@ -41,7 +48,7 @@ namespace MusicWebSite.Controllers
         {
             CreateSongViewModel model = new CreateSongViewModel();
             model.song = new SongModel();
-            model.artistID = artistID;
+            model.song.songArtistID = artistID;
             model.genreList = _mapper.Map<List<GenreModel>>(_genreService.GetAllGenres());
             return View(model);
         }
@@ -50,12 +57,26 @@ namespace MusicWebSite.Controllers
         public IActionResult Create(CreateSongViewModel model)
         {
             MusicCore.Song songCore = _mapper.Map<MusicCore.Song>(model.song);
-            songCore.songArtist = new MusicCore.Artist();
-            songCore.songArtist.id = model.artistID;
-            songCore.songGenre = new MusicCore.Genre();
-            songCore.songGenre.id = model.genreID;
+            songCore.songArtistID = model.song.songArtistID;
+            songCore.songGenreID = model.song.songGenreID;
 
             Boolean success = _songService.AddSong(songCore);
+            return RedirectToAction("Songs");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            EditSongViewModel model = new EditSongViewModel();
+            model.song = _mapper.Map<SongModel>(_songService.GetSong(id));
+            model.genreList = _mapper.Map<List<GenreModel>>(_genreService.GetAllGenres());
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditSongViewModel model)
+        {
+            Boolean success = _songService.UpdateSong(_mapper.Map<MusicCore.Song>(model.song));
             return RedirectToAction("Songs");
         }
     }

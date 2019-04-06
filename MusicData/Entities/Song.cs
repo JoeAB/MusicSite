@@ -13,6 +13,7 @@ namespace MusicData.Entities
         public int artistID { get; set; }
         public String name { get; set; }
         public String filePath { get; set; }
+        public String videoPath { get; set; }
         public DateTime releaseDate { get; set; }
 
     }

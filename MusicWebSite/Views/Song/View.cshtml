@@ -1,0 +1,39 @@
+﻿@model MusicWebSite.ViewModels.Song.ViewSongViewModel
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Song Details</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.song.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.song.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.songArtist.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.songArtist.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.songGenre.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.songGenre.name)
+        </dd>
+        @if (String.IsNullOrEmpty(Model.song.videoPath) == false)
+        {
+            <dd>
+                <iframe width="420" height="350" src="@Model.song.videoPath"></iframe>
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Songs">Back to List</a>
+</div>

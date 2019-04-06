@@ -8,6 +8,7 @@ namespace MusicCore.Interfaces
     {
         Song GetSong(int id);
         List<Song> GetAllSongs();
+        Boolean UpdateSong(Song song);
         Boolean AddSong(Song song);
         Boolean Validate(Song song);
     }

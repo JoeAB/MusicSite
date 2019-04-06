@@ -10,7 +10,7 @@ namespace MusicCore
     public class Album : IPurchasable
     {
         public int id { get; set; }
-        public List<Song> songs { get; set; }
+        public List<int> songIDs { get; set; }
 
         public String name { get; set; }
         public DateTime? releaseDate { get; set; }
