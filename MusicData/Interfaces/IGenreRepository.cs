@@ -9,6 +9,7 @@ namespace MusicData.Interfaces
         IGenre GetGenre(int id);
         List<IGenre> GetAllGenres();
         Boolean SaveGenre(IGenre genre);
+        Boolean UpdateGenre(IGenre genre);
         Boolean RemoveGenre(IGenre genre);
         IGenre GetByName(String name);
         List<IGenre> SearchByName(String name);

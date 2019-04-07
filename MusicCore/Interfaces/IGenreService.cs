@@ -7,6 +7,7 @@ namespace MusicCore.Interfaces
     {
         Genre GetGenre(int id);
         List<Genre> GetAllGenres();
+        Boolean UpdateGenre(Genre genre);
         Boolean AddGenre(Genre genre);
         Boolean Validate(Genre genre);
     }

@@ -8,6 +8,7 @@ namespace MusicData.Interfaces
     {
         IArtist GetArtist(int id);
         List<IArtist> GetAllArtists();
+        Boolean UpdateArtist(IArtist artist);
         Boolean SaveArtist(IArtist artist);
         Boolean RemoveArtist(IArtist artist);
         IArtist GetByName(String name);

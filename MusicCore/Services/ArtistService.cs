@@ -52,5 +52,15 @@ namespace MusicCore.Services
             return returnValue;
         }
 
+        public bool UpdateArtist(Artist artist)
+        {
+            //only set everything up if our object is valid
+            if (Validate(artist))
+            {
+                CoreToDataMapperService mapperService = new CoreToDataMapperService();
+                return _artistRepository.UpdateArtist(mapperService.MapArtistCoreToData(artist));
+            }
+            return false;
+        }
     }
 }

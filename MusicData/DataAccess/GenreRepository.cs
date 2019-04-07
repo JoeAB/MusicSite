@@ -122,5 +122,24 @@ namespace MusicData.DataAccess
             }
             return genres;
         }
+
+        public bool UpdateGenre(IGenre genre)
+        {
+            try
+            {
+                using (DataContext context = new DataContext())
+                {
+                    context.Genres.Update((Genre)genre);
+                    context.SaveChanges();
+                }
+            }
+            // we had an error and we're going to want to log it
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
+        }
     }
 }

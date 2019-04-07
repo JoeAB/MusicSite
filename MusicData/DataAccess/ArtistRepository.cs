@@ -121,5 +121,24 @@ namespace MusicData.DataAccess
             }
             return artists;
         }
+
+        public bool UpdateArtist(IArtist artist)
+        {
+            try
+            {
+                using (DataContext context = new DataContext())
+                {
+                    context.Artists.Update((Artist)artist);
+                    context.SaveChanges();
+                }
+            }
+            // we had an error and we're going to want to log it
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
+        }
     }
 }

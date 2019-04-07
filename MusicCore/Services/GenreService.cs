@@ -50,5 +50,15 @@ namespace MusicCore.Services
 
             return returnValue;
         }
+
+        public bool UpdateGenre(Genre genre)
+        {
+            if (Validate(genre))
+            {
+                CoreToDataMapperService mapperService = new CoreToDataMapperService();
+                return _genreRepository.SaveGenre(mapperService.MapGenreCoreToData(genre));
+            }
+            return false;
+        }
     }
 }
