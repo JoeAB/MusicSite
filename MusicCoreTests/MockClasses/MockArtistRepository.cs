@@ -40,19 +40,33 @@ namespace MusicCoreTests.MockClasses
 
         public IArtist GetArtist(int id)
         {
-            return artists.FirstOrDefault(x => x.artistID == id);
+            try
+            {
+                return artists.Single(x => x.artistID == id);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public IArtist GetByName(string name)
         {
-            return artists.FirstOrDefault(x => x.name == name);
+            try
+            {
+                return artists.Single(x => x.name == name);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public bool RemoveArtist(IArtist artist)
         {
             try
             {
-                artists.Remove(artists.FirstOrDefault(x => x.artistID == artist.artistID));
+                artists.Remove(artists.Single(x => x.artistID == artist.artistID));
                 return true;
             }
             catch (Exception e)

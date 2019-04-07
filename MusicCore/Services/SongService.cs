@@ -10,10 +10,14 @@ namespace MusicCore.Services
     public class SongService : ISongService
     {
         private readonly ISongRepository _songRepository;
+        private readonly IArtistRepository _artistRepository;
+        private readonly IGenreRepository _genreRepository;
 
-        public SongService(ISongRepository songRepository)
+        public SongService(ISongRepository songRepository, IArtistRepository artistRepository, IGenreRepository genreRepository)
         {
             _songRepository = songRepository;
+            _artistRepository = artistRepository;
+            _genreRepository = genreRepository; 
         }
 
         public bool AddSong(Song song)
@@ -57,7 +61,27 @@ namespace MusicCore.Services
 
         public bool Validate(Song song)
         {
-            return true;
+            //check the artist ID is valid
+            IArtist artist = _artistRepository.GetArtist(song.songArtistID);
+            if (artist == null)
+            {
+                return false;
+            }
+            //check the genre id is valid
+            else if(_genreRepository.GetGenre(song.songGenreID) == null)
+            {
+                return false;
+            }
+            //check the year it's released to make sure it's not outside the active years range
+            else if(artist.startingDate.Year > song.releaseDate.Year || 
+                (artist.endingDate.HasValue && artist.endingDate.Value.Year < song.releaseDate.Year))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
