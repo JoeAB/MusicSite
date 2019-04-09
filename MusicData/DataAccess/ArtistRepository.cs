@@ -65,13 +65,14 @@ namespace MusicData.DataAccess
             return artists;
         }
 
-        public bool RemoveArtist(IArtist artist)
+        public bool RemoveArtist(int id)
         {
             try
             {
                 using (DataContext context = new DataContext())
                 {
-                    context.Artists.Remove((Artist)artist);
+                    context.Artists.Remove(
+                        context.Artists.Single(x=> x.artistID == id));
                     context.SaveChanges();
                 }
             }

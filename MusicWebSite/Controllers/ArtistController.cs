@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MusicWebSite.Controllers
 {
-    public class ArtistController: Controller
+    public class ArtistController : Controller
     {
         private readonly IMapper _mapper;
         private readonly IArtistService _artistService;
@@ -33,7 +33,7 @@ namespace MusicWebSite.Controllers
         public IActionResult View(int id)
         {
             ViewArtistViewModel model = new ViewArtistViewModel();
-            model.artist =  _mapper.Map<ArtistModel>(_artistService.GetArtist(id));
+            model.artist = _mapper.Map<ArtistModel>(_artistService.GetArtist(id));
             return View(model);
         }
 
@@ -48,6 +48,13 @@ namespace MusicWebSite.Controllers
         public IActionResult Create(CreateArtistViewModel model)
         {
             Boolean success = _artistService.AddArtist(_mapper.Map<MusicCore.Artist>(model.artist));
+            return RedirectToAction("Artists");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Boolean success = _artistService.RemoveArtist(id);
             return RedirectToAction("Artists");
         }
     }

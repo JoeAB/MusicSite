@@ -31,6 +31,14 @@ namespace MusicCoreTests.MockClasses
                 startingDate = new DateTime(1996, 1, 1), //1996, is all wikipedia had so lol
                 endingDate = null
             });
+            artists.Add((IArtist)new Artist()
+            {
+                artistID = 999,
+                name = "Lady Gaga",
+                description = "I'm adding this to remove it for a test.",
+                startingDate = new DateTime(2008, 8, 19),
+                endingDate = null
+            });
         }
 
         public List<IArtist> GetAllArtists()
@@ -70,6 +78,19 @@ namespace MusicCoreTests.MockClasses
                 return true;
             }
             catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool RemoveArtist(int id)
+        {
+            try
+            {
+                artists.Remove(artists.Single(x => x.artistID == id));
+                return true;
+            }
+            catch(Exception e)
             {
                 return false;
             }

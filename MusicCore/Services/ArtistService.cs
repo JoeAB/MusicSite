@@ -62,5 +62,12 @@ namespace MusicCore.Services
             }
             return false;
         }
+
+        public bool RemoveArtist(int id)
+        {
+            //to do: later want to make sure we validate there are no songs linked to the artist before we delete
+            CoreToDataMapperService mapperService = new CoreToDataMapperService();
+            return _artistRepository.RemoveArtist(id);
+        }
     }
 }

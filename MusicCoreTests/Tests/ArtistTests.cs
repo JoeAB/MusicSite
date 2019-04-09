@@ -81,7 +81,7 @@ namespace MusicCoreTests.Tests
         [Test]
         public void GetArtistsTest()
         {
-            int expectedCount = 2;
+            int expectedCount = 3;
 
             ArtistService service = new ArtistService(_artistRepository);
             List<Artist> artists = service.GetAllArtists();
@@ -91,8 +91,6 @@ namespace MusicCoreTests.Tests
         [Test]
         public void AddArtistTest()
         {
-            int expectedCount = 3;
-
             Artist artist = new Artist()
             {
                 id = 3,
@@ -103,9 +101,8 @@ namespace MusicCoreTests.Tests
             };
 
             ArtistService service = new ArtistService(_artistRepository);
-            service.AddArtist(artist);
-            List<Artist> artists = service.GetAllArtists();
-            Assert.AreEqual(expectedCount, artists.Count);
+            bool returnValue = service.AddArtist(artist);
+            Assert.IsTrue(returnValue);
         }
 
         [Test]
@@ -118,9 +115,16 @@ namespace MusicCoreTests.Tests
                 name = "Linkin Park",
                 description = "No description needed",
                 startingDate = new DateTime(2007, 1, 1),
-                endingDate = new DateTime(2020, 1, 1) 
+                endingDate = new DateTime(2020, 1, 1)
             };
             bool returnValue = service.UpdateArtist(artist);
+            Assert.IsTrue(returnValue);
+        }
+        [Test]
+        public void RemoveArtistTest()
+        {
+            ArtistService service = new ArtistService(_artistRepository);
+            bool returnValue = service.RemoveArtist(999);
             Assert.IsTrue(returnValue);
         }
     }

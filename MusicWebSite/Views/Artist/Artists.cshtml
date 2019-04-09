@@ -13,19 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.artists.FirstOrDefault().id)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.artists.FirstOrDefault().name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.artists.FirstOrDefault().description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.artists.FirstOrDefault().startingDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.artists.FirstOrDefault().endingDate)
+                Years Active
             </th>
             <th></th>
         </tr>
@@ -34,22 +28,30 @@
 @foreach (var item in Model.artists) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.id)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.startingDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.endingDate)
+                @Html.DisplayFor(modelItem => item.startingDate.Year)
+                @if (item.endingDate.HasValue)
+                {
+                    if (!item.endingDate.Value.Year.Equals(item.startingDate.Year))
+                    {
+                        <tex> - </tex>
+                        @Html.DisplayFor(modelItem => item.endingDate.Value.Year)
+                    }
+
+                }
+                else
+                {
+                    <tex> - Present</tex>
+                }
             </td>
             <td>
                 @Html.ActionLink("View", "View", new { item.id }) |
+                @Html.ActionLink("Delete","Delete", new  { item.id})
             </td>
         </tr>
 }
