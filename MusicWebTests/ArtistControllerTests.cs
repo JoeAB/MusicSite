@@ -30,7 +30,26 @@ namespace MusicWebSiteTests
             String pageTitleExpected = "Artists - MusicWebSite";
 
             Assert.AreEqual(pageTitleExpected, pageTitleActual);
+        }
 
+        [Test]
+        public void AddAndRemoveArtist()
+        {
+            driver.Url = HostUrl + "/artist/artists";
+            driver.FindElement(By.Name("createLink")).Click();
+            String pageTitleActual = driver.Title;
+
+            driver.FindElement(By.Id("artist_name")).SendKeys("Test");
+            driver.FindElement(By.Id("artist_description")).SendKeys("Test part 2");
+            driver.FindElement(By.Id("artist_startingDate")).SendKeys("2011-01-10");
+            driver.FindElement(By.Id("artist_endingDate")).SendKeys("2011-01-11");
+            driver.FindElement(By.Id("submit")).Submit();
+            var elements = driver.FindElements(By.Name("deleteLink"));
+            int countBeforeDelete = elements.Count;
+            Assert.AreEqual(elements[elements.Count - 1].GetAttribute("id"), "delete_Test");
+            elements[elements.Count - 1].Click();
+            int countAfterDelete = driver.FindElements(By.Name("deleteLink")).Count;
+            Assert.AreNotEqual(countBeforeDelete, countAfterDelete);
         }
 
         [TearDown]

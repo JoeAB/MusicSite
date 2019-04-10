@@ -7,9 +7,9 @@
 <h1>Artists</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" name="createLink">Create New</a>
 </p>
-<table class="table">
+<table class="table" id="artistsTable">
     <thead>
         <tr>
             <th>
@@ -51,7 +51,7 @@
             </td>
             <td>
                 @Html.ActionLink("View", "View", new { item.id }) |
-                @Html.ActionLink("Delete","Delete", new  { item.id})
+                @Html.ActionLink("Delete","Delete", new  { item.id}, new  {name = "deleteLink", id ="delete_"+item.name })
             </td>
         </tr>
 }
