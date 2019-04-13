@@ -18,6 +18,8 @@ namespace MusicWebSite
             CreateMap<GenreModel, Genre>();
             CreateMap<Song, SongModel>();
             CreateMap<SongModel, Song>();
+            CreateMap<Album, AlbumModel>();
+            CreateMap<AlbumModel, Album>();
         }
     }
 }

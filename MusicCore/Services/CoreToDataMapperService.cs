@@ -83,6 +83,7 @@ namespace MusicCore.Services
             albumData.albumID = albumCore.id;
             albumData.name = albumCore.name;
             albumData.releaseDate = albumCore.releaseDate;
+            albumData.albumImagePath = albumCore.coverImagePath;
             return albumData;
         }
         internal Album MapAlbumDataToCore(IAlbum albumData)
@@ -91,6 +92,7 @@ namespace MusicCore.Services
             albumCore.id = albumData.albumID;
             albumCore.name = albumData.name;
             albumCore.releaseDate = albumData.releaseDate;
+            albumCore.coverImagePath = albumData.albumImagePath;
 
             return albumCore;
         }

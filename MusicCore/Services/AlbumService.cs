@@ -24,7 +24,7 @@ namespace MusicCore.Services
             return false;
         }
 
-        public List<Album> GetAllAlbumss()
+        public List<Album> GetAllAlbums()
         {
             List<Album> albums = new List<Album>();
             CoreToDataMapperService mapperService = new CoreToDataMapperService();

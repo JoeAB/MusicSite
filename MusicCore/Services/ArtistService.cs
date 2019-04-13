@@ -69,5 +69,10 @@ namespace MusicCore.Services
             CoreToDataMapperService mapperService = new CoreToDataMapperService();
             return _artistRepository.RemoveArtist(id);
         }
+
+        public List<Song> GetAlbumSongs(int albumID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

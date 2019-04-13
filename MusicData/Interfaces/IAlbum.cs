@@ -9,5 +9,7 @@ namespace MusicData.Interfaces
         int albumID { get; set; }
         String name { get; set; }
         DateTime? releaseDate { get; set; }
+        String albumImagePath { get; set; }
+
     }
 }

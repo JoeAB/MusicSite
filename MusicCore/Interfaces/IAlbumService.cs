@@ -7,7 +7,7 @@ namespace MusicCore.Interfaces
     public interface IAlbumService
     {
         Album GetAlbum(int id);
-        List<Album> GetAllAlbumss();
+        List<Album> GetAllAlbums();
         Boolean AddAlbum(Album album);
         Boolean Validate(Album album);
     }

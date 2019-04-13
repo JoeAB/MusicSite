@@ -12,5 +12,6 @@ namespace MusicData.Entities
 
         public String name { get; set; }
         public DateTime? releaseDate { get; set; }
+        public String albumImagePath { get; set; }
     }
 }

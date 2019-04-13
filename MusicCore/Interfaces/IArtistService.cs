@@ -12,5 +12,6 @@ namespace MusicCore.Interfaces
         Boolean AddArtist(Artist artist);
         Boolean Validate(Artist artist);
         Boolean RemoveArtist(int artist);
+        List<Song> GetAlbumSongs(int albumID);
     }
 }
