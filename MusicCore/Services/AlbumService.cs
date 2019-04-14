@@ -8,10 +8,12 @@ namespace MusicCore.Services
     public class AlbumService : IAlbumService
     {
         private readonly IAlbumRepository _albumRepository;
+        private readonly ISongToAlbumMappingRepository _songToAlbumMappingRepository;
 
-        public AlbumService(IAlbumRepository albumRepository)
+        public AlbumService(IAlbumRepository albumRepository, ISongToAlbumMappingRepository songToAlbumMappingRepository)
         {
             _albumRepository = albumRepository;
+            _songToAlbumMappingRepository = songToAlbumMappingRepository;
         }
         public bool AddAlbum(Album album)
         {
@@ -45,5 +47,11 @@ namespace MusicCore.Services
         {
             return true;
         }
+
+        public bool AddSongToAlbum(int albumID, int songID)
+        {
+            return _songToAlbumMappingRepository.AddSongToAlbumMapping(albumID, songID);
+        }
+
     }
 }

@@ -11,5 +11,6 @@ namespace MusicCore.Interfaces
         Boolean UpdateSong(Song song);
         Boolean AddSong(Song song);
         Boolean Validate(Song song);
+        List<Song> GetSongsByArtist(int artistID);
     }
 }

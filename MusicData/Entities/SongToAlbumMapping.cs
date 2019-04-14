@@ -12,32 +12,8 @@ namespace MusicData.Entities
         [Key]
         public int songToAlbumID { get; set; }
 
-        public Song song{ get; set; }
-        public Album album { get; set; }
-
-        [NotMapped]
-        public ISong songReference
-        {
-            get
-            {
-                return song;
-            }
-            set
-            {
-
-            }
-        }
-        [NotMapped]
-        public IAlbum albumReference
-        {
-            get
-            {
-                return album;
-            }
-            set
-            {
-            }
-        }
+        public int songID{ get; set; }
+        public int albumID { get; set; }
 
     }
 }

@@ -13,5 +13,6 @@ namespace MusicData.Interfaces
         Boolean UpdateSong(ISong song);
         ISong GetByName(String name);
         List<ISong> SearchByName(String name);
+        List<ISong> GetSongsByArtist(int artistID);
     }
 }

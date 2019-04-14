@@ -83,5 +83,16 @@ namespace MusicCore.Services
                 return true;
             }
         }
+
+        public List<Song> GetSongsByArtist(int artistID)
+        {
+            List<Song> songs = new List<Song>();
+            CoreToDataMapperService mapperService = new CoreToDataMapperService();
+            foreach (ISong songData in _songRepository.GetSongsByArtist(artistID))
+            {
+                songs.Add(mapperService.MapSongDataToCore(songData));
+            }
+            return songs;
+        }
     }
 }

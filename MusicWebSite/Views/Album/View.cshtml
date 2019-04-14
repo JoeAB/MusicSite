@@ -38,6 +38,6 @@
     </div>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Add Song", "AddSongToAlbum", new { id = Model.album.id }) |
     <a asp-action="Albums">Back to List</a>
 </div>

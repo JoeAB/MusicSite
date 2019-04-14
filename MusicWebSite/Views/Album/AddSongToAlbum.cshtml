@@ -1,0 +1,53 @@
+﻿@model MusicWebSite.ViewModels.Album.AddSongToAlbumViewModel
+
+@{
+    ViewData["Title"] = "Add Song to Album";
+}
+
+<h1>AddSongToAlbum</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddSongToAlbum" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <select id="artistSelect" asp-for="artistID" asp-items="@(new SelectList(Model.artists,"id","name"))">
+                    <option>Select an Artist</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select id="songSelect" asp-for="songID" disable></select>
+            </div>
+            <div class="form-group">
+                <input asp-for="album.id" type="hidden">
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#artistSelect").on('change',function () {
+                var selectedArtistValue = $('#artistSelect').children('option:selected').val();
+                $.ajax({
+                    contentType: 'application/json',
+                    datatype: 'json',
+                    type: 'GET',
+                    data: { 'artistID': selectedArtistValue},
+                    url: '@Url.Action("GetArtistSongsJson","Song")',
+                    success: function (data) {
+                        var songSelector = $('#songSelect');
+                        songSelector.empty();
+                        songSelector.removeAttr('disabled');
+                        $.each(data, function (index, item) {
+                            songSelector.append(new Option(item.name, item.id));
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

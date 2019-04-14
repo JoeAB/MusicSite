@@ -79,5 +79,12 @@ namespace MusicWebSite.Controllers
             Boolean success = _songService.UpdateSong(_mapper.Map<MusicCore.Song>(model.song));
             return RedirectToAction("Songs");
         }
+
+        [HttpGet]
+        public IActionResult GetArtistSongsJson(int artistID)
+        {
+            List<SongModel> songs = _mapper.Map<List<SongModel>>(_songService.GetSongsByArtist(artistID));
+            return Json(songs);
+        }
     }
 }

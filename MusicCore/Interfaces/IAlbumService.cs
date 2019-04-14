@@ -10,5 +10,7 @@ namespace MusicCore.Interfaces
         List<Album> GetAllAlbums();
         Boolean AddAlbum(Album album);
         Boolean Validate(Album album);
+        Boolean AddSongToAlbum(int albumID, int songID);
+
     }
 }

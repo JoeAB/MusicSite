@@ -14,14 +14,12 @@ namespace MusicWebSite.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IAlbumService _albumService;
-        private readonly ISongService _songService;
         private readonly IArtistService _artistService;
 
-        public AlbumController(IMapper mapper, IAlbumService albumService, ISongService songService, IArtistService artistService)
+        public AlbumController(IMapper mapper, IAlbumService albumService, IArtistService artistService)
         {
             _mapper = mapper;
             _albumService = albumService;
-            _songService = songService;
             _artistService = artistService;
         }
 
@@ -51,6 +49,22 @@ namespace MusicWebSite.Controllers
         {
             Boolean success = _albumService.AddAlbum(_mapper.Map<MusicCore.Album>(model.album));
             return RedirectToAction("Albums");
+        }
+
+        [HttpGet]
+        public IActionResult AddSongToAlbum(int id)
+        {
+            AddSongToAlbumViewModel model = new AddSongToAlbumViewModel();
+            model.album = _mapper.Map<AlbumModel>(_albumService.GetAlbum(id));
+            model.artists = _mapper.Map<List<ArtistModel>>(_artistService.GetAllArtists());
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddSongToAlbum(AddSongToAlbumViewModel model)
+        {
+            _albumService.AddSongToAlbum(model.album.id, model.songID);
+            return RedirectToAction("View", new { id = model.album.id });
         }
     }
 }

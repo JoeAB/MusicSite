@@ -141,5 +141,23 @@ namespace MusicData.DataAccess
             return songs;
         }
 
+        public List<ISong> GetSongsByArtist(int artistID)
+        {
+            List<ISong> songs;
+            try
+            {
+                using (DataContext context = new DataContext())
+                {
+                    songs = context.Songs.Where(x => x.artistID.Equals(artistID)).ToList().ConvertAll(x => (ISong)x);
+                }
+            }
+            // we had an error and we're going to want to log it
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            return songs;
+        }
     }
 }

@@ -60,6 +60,7 @@ namespace MusicWebSite
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IAlbumRepository, AlbumRepository>();
             services.AddScoped<ISongRepository, SongRepository>();
+            services.AddScoped<ISongToAlbumMappingRepository, SongToAlbumMappingRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
